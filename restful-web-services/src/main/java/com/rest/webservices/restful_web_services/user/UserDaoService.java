@@ -28,7 +28,11 @@ public class UserDaoService {
 	}
 	
 	public User findOne(int id){
-		User user = users.stream().filter(a -> a.getId()==id).findFirst().get();
+//		User user = users.stream().filter(a -> a.getId()==id).findFirst().get();
+		
+		// .get() will return Exception if not found. So using orElse(null)
+		User user = users.stream().filter(a -> a.getId()==id).findFirst().orElse(null);
+		
 		return user;
 	}
 	
